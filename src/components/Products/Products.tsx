@@ -29,24 +29,53 @@ export const Products: React.FC = () => {
   
   return (
     <>
-    <h1>Products</h1>
-    <Link
+    <h1>
+      <span className="ml-1 px-4">PRODUCTS </span>
+      <Link
         to={`/products/add`}
-        className="button"
-    >
-    {"Add"}
+        className="btn btn-success btn-sm mx-auto"
+      >
+      {"ADD"}
     </Link>
+    </h1>
+
       <div>
-        <ul>
+        <ul className="list-group">
           {productsList?.map(product => (
-            <li key={product.name}>
-                {product.name}, {product.category}
-            <Link
-              to={`/products/${product.id}`}
-              className="button"
-            >
-              {"Edit"}
-            </Link>
+            <li key={product.name} className="list-group-item mx-2">
+              <div className="d-inline-block px-3">
+                <span className="text-secondary">
+                  <small>
+                    Name: 
+                  </small>
+                </span>
+                <span>
+                  <strong>
+                    {product.name}
+                  </strong>
+                </span>
+              </div>
+
+              <div className="d-inline-block px-3">
+                <span className="text-secondary ">
+                  <small>
+                    Category: 
+                  </small>
+                </span>
+                <span>
+                  <strong>
+                    {product.category}
+                  </strong>
+                </span>
+              </div>
+              <div className="d-inline-block px-3">
+                <Link
+                  to={`/products/${product.id}`}
+                  className="btn btn-warning btn-sm mx-auto"
+                >
+                  {"Edit"}
+                </Link>
+              </div>
             </li>
           ))}
         </ul>

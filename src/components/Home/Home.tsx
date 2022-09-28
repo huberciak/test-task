@@ -2,6 +2,6 @@ import React from 'react';
 
 export const Home: React.FC = () => (
   <div>
-    <h1>Home</h1>
+    <h3>Home</h3>
   </div>
 );

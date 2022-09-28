@@ -8,28 +8,40 @@ import { Category } from './react-app-env';
 import {CategoryEdit } from './components/CategoryEdit/CategoryEdit.tsx'
 import { CategoryAdd } from './components/CategoryAdd/CategoryAdd.tsx'
 import { ProductAdd } from './components/ProductAdd/ProductAdd.tsx'
+import BasicExample from './components/random/Products.tsx';
 
 const App = () => (
   <div className="App">
-    <nav className="navbar">
-      <div className="navbar-brand">
-        <NavLink
-          to="/"
-        >
-          Home
-        </NavLink>
-        
-        <NavLink
-          to="/products"
-        >
-          Products
-        </NavLink>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+            <NavLink
+              to="/"
+              className="nav-link"
+            >
+              Home
+            </NavLink>
+          </li>
 
-        <NavLink
-          to="/categories"
-        >
-          Categories
-        </NavLink>
+          <li className="nav-item active">
+            <NavLink
+              to="/products"
+              className="nav-link"
+            >
+              Products
+            </NavLink>
+          </li>
+
+          <li className="nav-item active">
+            <NavLink
+              to="/categories"
+              className="nav-link"
+            >
+              Categories
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -41,7 +53,6 @@ const App = () => (
       <Route path="/categories/add" element={<CategoryAdd />} />
       <Route path="/products/:productId" element={<ProductEdit />} />
       <Route path="/categories/:categoryId" element={<CategoryEdit />} />
-
 
     </Routes>
   </div>

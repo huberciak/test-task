@@ -1,6 +1,6 @@
 import React from 'react';
-import { useMatch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useMatch, useNavigate  } from 'react-router-dom';
+import { useState, useEffect,} from 'react';
 import { getCategory, editCategory } from '../../api.ts'
 import { Category } from '../../react-app-env';
 
@@ -31,29 +31,33 @@ export const CategoryEdit = () => {
     }
   },[category?.name, selectedCategoryId]);
 
+  const navigate = useNavigate();
+
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     editCategory(category?.id, newCategoryName);
+    navigate('/categories');
+    window.location.reload();
     }
 
   return ( 
     selectedCategoryId && (
       <>
-      <div>
+      <div className='mx-3 w-25'>
         <form onSubmit={handleFormSubmit}>
-          <div>
+          <div className="form-group">
           <label>Category: </label>
           <input
             type="text"
             value={newCategoryName}
+            className="form-control form-control-lg"
             onChange={(event)=> {
               setNewCategoryName(event.target.value)
             }}
           >
           </input>
-          {newCategoryName}
           </div>
-          <button type="submit">
+          <button type="submit" className="btn btn-primary mb-2 mt-3">
             Submit
           </button>
         </form>

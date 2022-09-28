@@ -1,9 +1,10 @@
 import React from 'react';
-import { useMatch } from 'react-router-dom';
+import { Navigate, useMatch, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { getProduct, getCategory, getCategoriesList, editProduct, addProduct } from '../../api.ts'
 import { Category, Product} from '../../react-app-env';
 import Select from 'react-select'
+
 interface Option {
   value: string;
   label: string;
@@ -50,6 +51,8 @@ export const ProductAdd = () => {
     }
   }
 
+  const navigate = useNavigate();
+
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -60,16 +63,20 @@ export const ProductAdd = () => {
       tax_id: 1,
       measure_type: "KILOGRAM",
     });
-    }
+
+    navigate('/products');
+    window.location.reload();
+  }
 
 return ( 
     <>
-    <div>
+    <div className='mx-3 w-25'>
       <form onSubmit={handleFormSubmit}>
-        <div>
+        <div className="form-group"> 
           <label>Name: </label>
           <input
             type="text"
+            className="form-control form-control-lg"
             value={newName}
             onChange={(event)=> {
               setNewName(event.target.value)
@@ -78,7 +85,7 @@ return (
           </input>
             {newName}
         </div>
-        <div>
+        <div className="form-group">
         <label>Category: </label>
           <Select 
             options={options} 
@@ -86,9 +93,8 @@ return (
             filterOption={customFilter}
             onChange={(choice) => {if(choice)setNewCategoryName(choice.value)}}
           />
-          {newCategoryName}
         </div>
-        <button type='submit'>
+        <button type='submit' className="btn btn-primary mb-2 mt-3">
           Submit
         </button>
       </form>
